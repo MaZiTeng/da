@@ -1,16 +1,59 @@
-# This is a sample Python script.
+import json
 
-# Press ⇧⌘F11 to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# 环境
+air_temperature = []
+global_radiation = []
+precipitation = []
+relative_humidity = []
+wind10m_direction = []
+wind10m_speed = []
+
+# 工作日
+workday = []
+
+# 自行车
+bike_on_loan = []
+bike_available = []
+bike = []
+
+# 车位
+slote_on_use = []
+slots_available = []
+slote = []
+
+# 路况
+carbon_monoxide = []
+nitrogen_dioxide = []
+ozone = []
+particulate_matter10 = []
+particulate_matter25 = []
+sulphur_dioxide = []
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press <no shortcut> to toggle the breakpoint.
+def data_process():
+    with open('bike 0519-0522.json', 'r') as f:
+        data = json.load(f)
+        for i in data:
+            bike_on_loan.append(i['bikes'])
+            bike_available.append(i['slots'])
+            bike.append(0 if (i['bikes'] + i['slots'] == 0) else i['bikes'] / (i['bikes'] + i['slots']))
+
+    with open('parking 0519-0522.json', 'r') as f:
+        data = json.load(f)
+        for i in data:
+            slote_on_use.append(i['slotsTotal'] - i['slotsAvailable'])
+            slots_available.append(i['slotsAvailable'])
+            slote.append(0 if (i['slotsTotal'] == 0) else (i['slotsTotal'] - i['slotsAvailable']) / (i['slotsTotal']))
+    # with open('BDTdata.json', 'r') as f:
+    #     data = json.load(f)
+    #     # print(data)
+    #     print(data['EnvironmentStation'])
+        # for i in data:
+        #     print(i)
+            # slote_on_use.append(i['slotsTotal'] - i['slotsAvailable'])
+            # slots_available.append(i['slotsAvailable'])
+            # slote.append(0 if (i['slotsTotal'] == 0) else (i['slotsTotal'] - i['slotsAvailable']) / (i['slotsTotal']))
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    data_process()

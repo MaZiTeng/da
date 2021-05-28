@@ -1,4 +1,4 @@
-from urllib import request
+# from urllib import request
 import requests
 import json
 url0 = "https://mobility.api.opendatahub.bz.it/v2/flat%2Cnode"  #check all the respects of the 
@@ -48,7 +48,7 @@ for i in range(len(newinfo)):
             # values = {}
             newurl = newinfo[i].replace(",", "%2C")
             newurl = newurl.replace("*", parm)
-            fixurl = "/2021-04-05/2021-04-06?limit=500&where=and%28smetadata.municipality.in.%28Trento%29%2Csactive.eq.true%29&distinct=true&timezone=UTC"
+            fixurl = "/2021-05-19/2021-05-20?limit=500&where=and%28smetadata.municipality.in.%28Trento%29%2Csactive.eq.true%29&distinct=true&timezone=UTC"
             # fixurl = "/2021-04-05/2021-04-06?limit=500&where=sname.ire.Trento&distinct=true&timezone=UTC"
             newurl += fixurl
 
