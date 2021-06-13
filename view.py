@@ -7,30 +7,23 @@
 # @Software: PyCharm
 
 import web
+import main
 
 urls = (
     '/(.*)', 'index'
 )
 
-list = "123134"
+# list = "123134"
+
 
 class index:
     def GET(self, name):
-        fo = open("index.html", 'w+')
-        fo.write("<!DOCTYPE html>\n"
-                 "<html lang=\"en\">\n"
-                 "<head>\n"
-                 "<meta charset=\"UTF-8\">\n"
-                 "<title>test</title>\n"
-                 "</head>\n"
-                 "<body>\n"
-                 "<h1>测试</h1>\n"+list+
-                 "</body>\n"
-                 "</html>"
-                 )
-        fo.close()
-        index_text = open('index.html', 'r')
-        out = index_text.read()
+        fo = open("index.html", 'r')
+
+        con = fo.read()
+        conlist = con.split('<br>')
+        so = main.pre([1, 2, 3, 4])
+        out = conlist[0] + "结果为" + str(so) + conlist[2]
         return out
 
 
